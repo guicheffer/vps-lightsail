@@ -1,4 +1,4 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width="60" alt="AWS" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" width="60" alt="AWS" align="right" />
 
 # vps-lightsail
 
@@ -105,7 +105,4 @@ Releases current IP, attaches a new one. Update endpoint in WireGuard app after.
 
 ## Cost
 
-| | |
-|---|---|
-| Lightsail nano (512MB RAM, 512GB transfer) | ~$5/mo |
-| Static IP while attached | free |
+→ See [COSTS.md](COSTS.md) for detailed breakdown and comparison with commercial VPNs.
