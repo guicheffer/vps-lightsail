@@ -2,7 +2,13 @@
 
 # vps-lightsail
 
-Personal WireGuard VPN on AWS Lightsail. Dedicated IP in any region. ~$5/mo.
+[![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple&logoColor=white)](https://www.apple.com/macos/)
+[![iOS](https://img.shields.io/badge/iOS-16%2B-black?logo=apple&logoColor=white)](https://www.apple.com/ios/)
+[![AWS Lightsail](https://img.shields.io/badge/AWS-Lightsail-FF9900?logo=amazonaws&logoColor=white)](https://aws.amazon.com/lightsail/)
+[![WireGuard](https://img.shields.io/badge/WireGuard-VPN-88171A?logo=wireguard&logoColor=white)](https://www.wireguard.com/)
+[![cost](https://img.shields.io/badge/cost-~%245%2Fmo-brightgreen)](COSTS.md)
+
+Personal WireGuard VPN on AWS Lightsail. Dedicated IP, any region. ~$5/mo.
 
 ```mermaid
 graph LR
