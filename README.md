@@ -110,3 +110,7 @@ Releases current IP, attaches a new one. Update endpoint in WireGuard app after.
 ## Cost
 
 → See [COSTS.md](COSTS.md) for detailed breakdown and comparison with commercial VPNs.
+
+---
+
+<sub>As seen from <a href="https://guicheffer.me/vps">guicheffer.me/vps</a></sub>

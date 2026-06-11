@@ -34,12 +34,14 @@ Recommendation: use the VPN only when needed, not as a permanent always-on tunne
 
 ## Comparison
 
-| Option | Cost | IP type | Speed |
-|---|---|---|---|
-| **This setup** | ~$5/mo | dedicated | depends on route |
-| Surfshark | ~$2–4/mo | shared | shared pool |
-| NordVPN | ~$4–6/mo | shared | shared pool |
-| ExpressVPN | ~$8–10/mo | shared | shared pool |
-| Dedicated IP add-on (NordVPN) | ~$5/mo extra | dedicated | shared infra |
+> Prices below assume monthly billing. Most commercial VPNs are significantly cheaper on annual plans (~$2–4/mo) — but the majority of people pay month-to-month, so these are the realistic numbers.
 
-Main advantage here: IP is yours alone, full control, no third party in the middle.
+| Option | Monthly cost | IP type |
+|---|---|---|
+| **This setup** | ~$5/mo | dedicated |
+| Surfshark | ~$15/mo | shared |
+| NordVPN | ~$13/mo | shared |
+| ExpressVPN | ~$13/mo | shared |
+| NordVPN + dedicated IP add-on | ~$18/mo | dedicated |
+
+Main advantage here: dedicated IP, full control, no third party in the middle — at the same price as the cheapest monthly plans.
