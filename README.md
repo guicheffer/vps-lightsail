@@ -8,8 +8,6 @@
 [![WireGuard](https://img.shields.io/badge/WireGuard-VPN-88171A?logo=wireguard&logoColor=white)](https://www.wireguard.com/)
 [![cost](https://img.shields.io/badge/cost-~%245%2Fmo-brightgreen)](COSTS.md)
 
-Personal WireGuard VPN on AWS Lightsail. Dedicated IP, any region. ~$5/mo.
-
 ```mermaid
 graph LR
     A[Your Device] -->|WireGuard tunnel| B[AWS Lightsail VPS<br/>your region]
