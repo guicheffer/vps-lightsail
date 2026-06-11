@@ -67,7 +67,7 @@ aws lightsail get-bundles --region sa-east-1 \
 
 **iPhone**
 1. Install [WireGuard](https://apps.apple.com/app/wireguard/id1441195209)
-2. `+` → Create from QR code → scan terminal output
+2. Click on `+` then → Create from QR code → scan terminal output
 3. Activate
 
 **Verify IP**
