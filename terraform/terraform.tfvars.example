@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and fill in your values
+# cp terraform.tfvars.example terraform.tfvars
+
+aws_region           = "sa-east-1"       # São Paulo
+availability_zone    = "sa-east-1a"
+bundle_id            = "nano_3_1"        # ~$5/mo
+blueprint_id         = "ubuntu_24_04"
+instance_name        = "personal-vps-vpn"
+ssh_public_key_path  = "~/.ssh/id_ed25519.pub"
+ssh_private_key_path = "~/.ssh/id_ed25519"

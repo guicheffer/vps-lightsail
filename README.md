@@ -56,6 +56,19 @@ aws lightsail get-bundles --region sa-east-1 \
   --output table
 ```
 
+### Alternative: Terraform
+
+```bash
+cd terraform
+cp terraform.tfvars.example terraform.tfvars
+# edit terraform.tfvars with your region/keys
+
+terraform init
+terraform apply
+```
+
+Outputs server IP + SSH command + instructions to fetch WireGuard client configs.
+
 ---
 
 ## Connect
