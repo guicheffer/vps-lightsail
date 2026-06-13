@@ -62,12 +62,14 @@ aws lightsail get-bundles --region sa-east-1 \
 cd terraform
 cp terraform.tfvars.example terraform.tfvars
 # edit terraform.tfvars with your region/keys
+cd ..
 
-terraform init
-terraform apply
+make tf-setup     # terraform apply + auto-fetch mac-vpn.conf + iPhone QR
 ```
 
-Outputs server IP + SSH command + instructions to fetch WireGuard client configs.
+`make tf-setup` runs `terraform apply` then fetches the client configs
+automatically — same `mac-vpn.conf` + iPhone QR as `make setup`.
+Run `make config` any time to re-fetch them from the running server.
 
 ---
 

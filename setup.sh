@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # ── config ─────────────────────────────────────────────
 # Override via env vars before running:
 #   AWS_PROFILE=myprofile AWS_REGION=sa-east-1 ./setup.sh
@@ -121,46 +123,7 @@ systemctl enable wg-quick@wg0
 systemctl start wg-quick@wg0
 ENDSSH
 
-log "Fetching client keys..."
-SERVER_PUBLIC=$(ssh -i "$KEY_PATH" -o StrictHostKeyChecking=no \
-  ubuntu@"$SERVER_IP" "sudo cat /etc/wireguard/server_public.key")
-MAC_PRIVATE=$(ssh -i "$KEY_PATH" -o StrictHostKeyChecking=no \
-  ubuntu@"$SERVER_IP" "sudo cat /etc/wireguard/mac_private.key")
-IPHONE_PRIVATE=$(ssh -i "$KEY_PATH" -o StrictHostKeyChecking=no \
-  ubuntu@"$SERVER_IP" "sudo cat /etc/wireguard/iphone_private.key")
-
-cat > mac-vpn.conf << EOF
-[Interface]
-PrivateKey = $MAC_PRIVATE
-Address = 10.8.0.2/32
-DNS = 1.1.1.1
-
-[Peer]
-PublicKey = $SERVER_PUBLIC
-Endpoint = $SERVER_IP:51820
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 25
-EOF
-
-log "Mac config saved: mac-vpn.conf"
-log "iPhone QR:"
-
-ssh -i "$KEY_PATH" -o StrictHostKeyChecking=no ubuntu@"$SERVER_IP" "sudo bash" << EOF
-cat > /tmp/iphone-wg.conf << WGEOF
-[Interface]
-PrivateKey = $IPHONE_PRIVATE
-Address = 10.8.0.3/32
-DNS = 1.1.1.1
-
-[Peer]
-PublicKey = $SERVER_PUBLIC
-Endpoint = $SERVER_IP:51820
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 25
-WGEOF
-qrencode -t ansiutf8 < /tmp/iphone-wg.conf
-rm /tmp/iphone-wg.conf
-EOF
+bash "$SCRIPT_DIR/fetch-config.sh" "$SERVER_IP" "$KEY_PATH"
 
 echo ""
 echo "✅ Done. Server IP: $SERVER_IP"
