@@ -19,6 +19,14 @@ teardown: ## destroy all AWS resources (no leftover charges)
 swap-ip: ## release current IP and attach a fresh one
 	@bash swap-ip.sh
 
+tf-setup: ## create VPS + WireGuard via Terraform
+	@cd terraform && terraform init -input=false && \
+		TF_VAR_aws_region=$(REGION) TF_VAR_availability_zone=$(REGION)a terraform apply
+
+tf-teardown: ## destroy all Terraform-managed resources
+	@cd terraform && \
+		TF_VAR_aws_region=$(REGION) TF_VAR_availability_zone=$(REGION)a terraform destroy
+
 status: ## show WireGuard peers and handshake status
 	@ssh -i $$HOME/.ssh/vps-vpn.pem -o StrictHostKeyChecking=no \
 		ubuntu@$$(aws lightsail get-static-ip \
@@ -27,4 +35,4 @@ status: ## show WireGuard peers and handshake status
 			--query 'staticIp.ipAddress' --output text) \
 		"sudo wg show"
 
-.PHONY: help setup teardown swap-ip status
+.PHONY: help setup teardown swap-ip tf-setup tf-teardown status
