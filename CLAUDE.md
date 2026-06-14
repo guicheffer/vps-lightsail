@@ -50,6 +50,52 @@ aws configure --profile personal   # region: sa-east-1
 - WireGuard quickstart: https://www.wireguard.com/quickstart/
 - GL.iNet WireGuard client: https://docs.gl-inet.com/router/en/4/tutorials/wireguard_client/
 
+## ADDING A FRIEND AS PEER
+
+Friends don't need an AWS account. Just add them as a WireGuard peer on the running server:
+
+```bash
+SERVER_IP=<ip>
+KEY=~/.ssh/id_ed25519   # or vps-vpn.pem for shell-based setup
+
+ssh -i $KEY ubuntu@$SERVER_IP "sudo bash" << 'EOF'
+cd /etc/wireguard
+wg genkey | tee friend_private.key | wg pubkey | tee friend_public.key
+chmod 600 friend_private.key
+FRIEND_PUB=$(cat friend_public.key)
+wg set wg0 peer $FRIEND_PUB allowed-ips 10.8.0.4/32
+echo "" >> wg0.conf
+echo "[Peer]" >> wg0.conf
+echo "PublicKey = $FRIEND_PUB" >> wg0.conf
+echo "AllowedIPs = 10.8.0.4/32" >> wg0.conf
+echo "FRIEND_PRIVATE: $(cat friend_private.key)"
+echo "SERVER_PUBLIC:  $(cat server_public.key)"
+EOF
+```
+
+Then build a `.conf` for them (replace values):
+```ini
+[Interface]
+PrivateKey = <friend_private>
+Address = 10.8.0.4/32
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = <server_public>
+Endpoint = <server_ip>:51820
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25
+```
+
+Each additional peer uses a new IP: `10.8.0.5/32`, `10.8.0.6/32`, etc.
+
+## COST STRATEGY
+
+- **Always on**: $5/mo flat — fine for frequent use
+- **Kill when done**: ~$0.007/hr → watching 4h/week = ~$0.12/mo
+  - `make tf-teardown` after watching, `make tf-setup` next time
+  - New setup = new WireGuard keys = re-import config on all devices
+
 ## COSTS
 
 - $5/mo flat (nano bundle, 512GB transfer included)

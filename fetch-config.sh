@@ -38,7 +38,7 @@ PersistentKeepalive = 25
 EOF
 
 echo "▶ Mac config saved: $CONF_PATH"
-echo "▶ iPhone QR:"
+echo "▶ iPhone QR (scan with WireGuard app → + → Create from QR code):"
 
 ssh_server "sudo bash" << EOF
 cat > /tmp/iphone-wg.conf << WGEOF
@@ -56,3 +56,13 @@ WGEOF
 qrencode -t ansiutf8 < /tmp/iphone-wg.conf
 rm /tmp/iphone-wg.conf
 EOF
+
+echo ""
+echo "✅ Client configs ready."
+echo ""
+echo "  Mac    → WireGuard app → + → Import tunnel → $CONF_PATH"
+echo "  iPhone → WireGuard app → + → Create from QR code → scan above"
+echo "  Verify → https://ifconfig.me (should show server region)"
+echo ""
+echo "To tear down when done watching:"
+echo "  make teardown   (or: make tf-teardown if using Terraform)"

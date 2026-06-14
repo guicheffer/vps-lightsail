@@ -37,3 +37,10 @@ step "Deleting key pair..." delete-key-pair --key-pair-name vps-vpn-key
 rm -f "$HOME/.ssh/vps-vpn.pem"
 
 echo "✅ All resources deleted. No more charges."
+echo ""
+echo "To spin up again:"
+echo "  make setup              (shell)"
+echo "  make tf-setup           (Terraform — recommended)"
+echo ""
+echo "Note: new setup generates new WireGuard keys."
+echo "  Re-import mac-vpn.conf in WireGuard app and re-scan iPhone QR."
