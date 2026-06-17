@@ -4,7 +4,8 @@
 # IDE
 .idea/
 
-# Generated WireGuard client configs (contain private keys)
+# Generated WireGuard client configs (contain private keys — never commit)
+dist/
 mac-vpn.conf
 *-vpn.conf
 

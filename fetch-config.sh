@@ -13,7 +13,8 @@ KEY_PATH="${2:?usage: fetch-config.sh <server_ip> <ssh_key_path>}"
 KEY_PATH="${KEY_PATH/#\~/$HOME}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONF_PATH="$SCRIPT_DIR/mac-vpn.conf"
+mkdir -p "$SCRIPT_DIR/dist"
+CONF_PATH="$SCRIPT_DIR/dist/mac-vpn.conf"
 
 ssh_server() {
   ssh -i "$KEY_PATH" -o StrictHostKeyChecking=no ubuntu@"$SERVER_IP" "$@"
