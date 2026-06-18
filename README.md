@@ -82,8 +82,14 @@ Run `make config` any time to re-fetch them from the running server.
 
 **iPhone**
 1. Install [WireGuard](https://apps.apple.com/app/wireguard/id1441195209)
-2. Click on `+` then → Create from QR code → scan terminal output
+2. `+` → Create from QR code → scan terminal output
 3. Activate
+
+**Apple TV**
+1. Install [VPN Client Bee](https://apps.apple.com/app/vpn-client-bee/id1633151022) from the App Store
+2. Select **WireGuard** → **Custom Server List**
+3. Add server manually with the values from `mac-vpn.conf` (same config, different device slot)
+4. Connect
 
 **Verify IP**
 ```
